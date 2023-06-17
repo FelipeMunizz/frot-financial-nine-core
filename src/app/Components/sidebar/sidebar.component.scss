@@ -1,0 +1,38 @@
+.container-sidebar{
+    position: fixed;
+    padding-top: 15px;
+    width: 150px;
+    min-height: 700px;
+    height: -webkit-fill-available;
+    background: #fefefe;
+    border: 1px solid #fefefe;
+    box-sizing: border-box;
+    box-shadow: 0px 0.5px 2px rgb(53 51 52 / 16%);
+
+    .grupo-menu{
+
+    }
+
+    .container-icone-menu{
+        padding: 8px;
+    }
+    .caixa-menu{
+        width: 133px;
+        height: 42px;
+        border-radius: 4px;
+        background: rgba(128, 128, 128, 0.614);
+        cursor: pointer;
+    } 
+    .caixa-menu-texto{
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fefefe;
+        font-weight: bold;
+    }
+
+    .caixa-menu-select{
+        background: #27ae60 !important;
+    }
+}

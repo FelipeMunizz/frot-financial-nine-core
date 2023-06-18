@@ -16,7 +16,16 @@ const routes: Routes = [
     path: '', component: LoginComponent
   },
   {
-    path: "dashboard", loadChildren: () => import('./Pages/dashboard/dashboard.module').then(d => d.DashboardModule)
+    path: 'dashboard', loadChildren: () => import('./Pages/dashboard/dashboard.module').then(d => d.DashboardModule)
+  },
+  {
+    path: 'sistema', loadChildren: () => import('./Pages/sistema/sistema.module').then(s => s.SistemaModule)
+  },
+  {
+    path: 'categoria', loadChildren: () => import('./Pages/categoria/categoria.module').then(c => c.CategoriaModule)
+  },
+  {
+    path: 'despesa', loadChildren: () => import('./Pages/despesa/despesa.module').then(d => d.DespesaModule)
   }
 ];
 

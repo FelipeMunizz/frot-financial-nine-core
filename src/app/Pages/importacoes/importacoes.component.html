@@ -1,0 +1,22 @@
+<navbar></navbar>
+<sidebar></sidebar>
+
+<div class="container-base">
+    <div class="content-page">
+        <div class="card-header">
+            <div class="card-title">
+                Importções de Despesas
+            </div>
+        </div>
+
+        <div class="form-page">
+            <div class="row">
+                <div class="group-row">
+                    Nota Fiscal
+                    <div class="btn-imports" (click)="openFileInput()">Enviar Arquivo</div>
+                    <input type="file" #fileInput style="display: none" (change)="handleFileInputChange($event)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

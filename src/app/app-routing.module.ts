@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Pages/login/login.component';
-import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -26,6 +25,9 @@ const routes: Routes = [
   },
   {
     path: 'despesa', loadChildren: () => import('./Pages/despesa/despesa.module').then(d => d.DespesaModule)
+  },
+  {
+    path: 'importacoes', loadChildren: () => import('./Pages/importacoes/importacoes.module').then(i => i.ImportacoesModule)
   }
 ];
 

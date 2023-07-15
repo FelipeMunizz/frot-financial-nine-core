@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Pages/login/login.component';
+import { AuthGuard } from './Pages/guards/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -15,19 +16,24 @@ const routes: Routes = [
     path: '', component: LoginComponent
   },
   {
-    path: 'dashboard', loadChildren: () => import('./Pages/dashboard/dashboard.module').then(d => d.DashboardModule)
+    path: 'dashboard', loadChildren: () => import('./Pages/dashboard/dashboard.module').then(d => d.DashboardModule),
+    canActivate:[AuthGuard]
   },
   {
-    path: 'sistema', loadChildren: () => import('./Pages/sistema/sistema.module').then(s => s.SistemaModule)
+    path: 'sistema', loadChildren: () => import('./Pages/sistema/sistema.module').then(s => s.SistemaModule),
+    canActivate:[AuthGuard]
   },
   {
-    path: 'categoria', loadChildren: () => import('./Pages/categoria/categoria.module').then(c => c.CategoriaModule)
+    path: 'categoria', loadChildren: () => import('./Pages/categoria/categoria.module').then(c => c.CategoriaModule),
+    canActivate:[AuthGuard]
   },
   {
-    path: 'despesa', loadChildren: () => import('./Pages/despesa/despesa.module').then(d => d.DespesaModule)
+    path: 'despesa', loadChildren: () => import('./Pages/despesa/despesa.module').then(d => d.DespesaModule),
+    canActivate:[AuthGuard]
   },
   {
-    path: 'importacoes', loadChildren: () => import('./Pages/importacoes/importacoes.module').then(i => i.ImportacoesModule)
+    path: 'importacoes', loadChildren: () => import('./Pages/importacoes/importacoes.module').then(i => i.ImportacoesModule),
+    canActivate:[AuthGuard]
   }
 ];
 

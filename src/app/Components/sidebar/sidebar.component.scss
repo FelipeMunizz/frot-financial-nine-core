@@ -1,13 +1,13 @@
 .container-sidebar{
     position: fixed;
-    padding-top: 15px;
+    padding-top: 22px;
     width: 150px;
     min-height: 700px;
     height: -webkit-fill-available;
-    background: #fefefe;
-    border: 1px solid #fefefe;
+    //background: #fefefe;
+    //border: 1px solid #fefefe;
     box-sizing: border-box;
-    box-shadow: 0px 0.5px 2px rgb(53 51 52 / 16%);
+    //box-shadow: 0px 0.5px 2px rgb(53 51 52 / 16%);
 
     .grupo-menu{
 
@@ -20,11 +20,12 @@
         width: 133px;
         height: 42px;
         border-radius: 4px;
-        background: rgba(128, 128, 128, 0.614);
+        background: #ffffffd8;
         cursor: pointer;
 
         &:hover{
-            background: #746ab0;
+            background: #6D78C7;
+            color: #ffffff;
         }
     } 
     .caixa-menu-texto{
@@ -32,11 +33,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #fefefe;
+        color: #746ab0;
         font-weight: bold;
     }
 
     .caixa-menu-select{
-        background: #746ab0 !important;
+        background: #6D78C7 !important;
+        color: #ffffff !important; 
     }
 }

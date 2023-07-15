@@ -47,7 +47,7 @@ label{
 }
 
 .container-base{
-  padding: 30px 20px 0px 170px;
+  padding: 30px 20px 20px 170px;
 
   .content-page{
     background: white;
@@ -94,7 +94,7 @@ label{
 }
 
 input[type="number"] {
-  -moz-appearance: textfield; /* Para Firefox */
+  -moz-appearance: textfield;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

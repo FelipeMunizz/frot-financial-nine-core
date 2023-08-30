@@ -13,16 +13,16 @@ export class SistemaService{
     private readonly baseUrl = environments["endpoint"];
 
     AdicionarSistemaFinanceiro(sistemaFinanceiro: SistemaFinanceiro){
-        return this.httpClient.post<SistemaFinanceiro>(`${this.baseUrl}/adicionarsistemafinanceiro`,
+        return this.httpClient.post<SistemaFinanceiro>(`${this.baseUrl}/AdicionarSistemaFinanceiro`,
         sistemaFinanceiro)
     }
 
     ListaSistemaUsuario(email: string){
-        return this.httpClient.get(`${this.baseUrl}/listasistemausuario?email=${email}`)
+        return this.httpClient.get(`${this.baseUrl}/ListaSistemasUsuario?email=${email}`)
     }
 
     CadastrarUsuarioSistemaFinanceiro(idSistema:number, email:string){
-        return this.httpClient.post(`${this.baseUrl}/cadastrarusuariosistemafinanceiro?idSistema=${idSistema}`, 
+        return this.httpClient.post(`${this.baseUrl}/CadastrarUsuarioSistemaFinanceiro?idSistema=${idSistema}`, 
         email)
     }
 }

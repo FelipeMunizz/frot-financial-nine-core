@@ -25,9 +25,19 @@ export class LoginComponent {
         senha: ['', [Validators.required]]
       }
     )
+
+    const senha  = document.getElementById('senha');
+    senha.addEventListener('keydown', (event) => {
+      if(event.key === 'Enter'){
+        debugger
+        event.preventDefault();
+        this.loginUser();
+      }      
+    })
   }
 
   get dadosForm() {
+    localStorage.setItem('emailUsuario', this.loginForm.controls['email'].value);
     return this, this.loginForm.controls
   }
 

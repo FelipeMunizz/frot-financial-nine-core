@@ -10,6 +10,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { HTTPStatus, LoaderInterceptor } from './Interceptor/loader.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthGuard } from './Pages/guards/auth-guard.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const RxJs = [LoaderInterceptor, HTTPStatus]
 
@@ -25,7 +27,9 @@ const RxJs = [LoaderInterceptor, HTTPStatus]
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthGuard,

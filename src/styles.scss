@@ -1,3 +1,38 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$frot-financial-nine-core-primary: mat.define-palette(mat.$indigo-palette);
+$frot-financial-nine-core-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$frot-financial-nine-core-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$frot-financial-nine-core-theme: mat.define-light-theme((
+  color: (
+    primary: $frot-financial-nine-core-primary,
+    accent: $frot-financial-nine-core-accent,
+    warn: $frot-financial-nine-core-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($frot-financial-nine-core-theme);
+
 /* You can add global styles to this file, and also import other style files */
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap");
@@ -160,4 +195,16 @@ input[type="number"]::-webkit-outer-spin-button {
 @keyframes spin {
   0% {transform: rotate(0deg);}
   100% {transform: rotate(360deg);}
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.success-snackbar {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.error-snackbar {
+  background-color: #F44336;
+  color: white;
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SistemaFinanceiro } from 'src/app/Models/SistemaFinanceiro';
 import { MenuService } from 'src/app/Services/menu.service';
+import { MessageService } from 'src/app/Services/message.service';
 import { SistemaService } from 'src/app/Services/sistema.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { SistemaService } from 'src/app/Services/sistema.service';
 })
 export class SistemaComponent {
 
-  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public sistemaService: SistemaService) {
+  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public sistemaService: SistemaService, private messageService: MessageService) {
   }
 
   sistemaForm: FormGroup;
@@ -42,20 +43,18 @@ export class SistemaComponent {
     item.MesCopia = 0;
     item.AnoCopia = 0;
     
-    this.sistemaService.AdicionarSistemaFinanceiro(item)
+    this.sistemaService.AdicionarSistemaFinanceiro(item)    
     .subscribe((response : any) => {
       this.sistemaForm.reset();
-
       this.sistemaService.CadastrarUsuarioSistemaFinanceiro(response.id, localStorage.getItem("emailUsuario"))
       .subscribe((response : any) => {
-      }),(error) => console.log(error), () => {
-        this.loading = false;
+        this.messageService.showSuccessMessage('Sistema cadastrado com sucesso')
+      }),(error) => this.messageService.showErrorMessage(error), () => {
       }
     }),
-    (error) => console.log(error), () => {
-      this.loading = false;
+    (error) => this.messageService.showErrorMessage(error), () => {
     }
-
+    this.loading = false;
   }
 
 }

@@ -34,7 +34,6 @@ $frot-financial-nine-core-theme: mat.define-light-theme((
 @include mat.all-component-themes($frot-financial-nine-core-theme);
 
 /* You can add global styles to this file, and also import other style files */
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Work+Sans:300,400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500&display=swap");
@@ -42,6 +41,28 @@ $frot-financial-nine-core-theme: mat.define-light-theme((
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+// Functions first
+@import "../node_modules/bootstrap/scss/functions";
+
+// Variable overrides second
+$primary: #900;
+$enable-shadows: true;
+$prefix: "mo-";
+
+// Required Bootstrap imports
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+// Optional components
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/utilities/api";
 
 
 body {
@@ -88,8 +109,9 @@ label{
     background: white;
     padding: 16px;
     border-radius: 10px;
-    min-height: 800px;
-    min-width: 325px;
+    height: 79vh;
+    min-height: 100%;
+    min-width: 200px;
 
     .card-header{
       z-index: 3 !important;
@@ -114,16 +136,10 @@ label{
     .form-page{
       display: grid;
       justify-content: center;
-
-      .row{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: 16px;
+      
         .group-row{
           display: grid;
         }
-      }
     }
   }
 }
@@ -207,4 +223,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .error-snackbar {
   background-color: #F44336;
   color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .container-base {
+    padding: 30px 10px 10px 160px !important;
+  }
+
+  .content-page {
+    min-height: 500px !important;
+  }
 }

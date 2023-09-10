@@ -7,22 +7,17 @@
             <div class="info-login">
                 Transforme sua gestão financeira e alcance o sucesso dos seus negócios!
             </div>
+            <br>
         </div>
         <div class="container-form">
             <form class="form-inputs" [formGroup]="loginForm" (submit)="loginUser()">
                 <div class="group-input">
-                    <div class="text-info">
-                        Email
-                    </div>
                     <input type="email" class="input-form" id="email" placeholder="Email" formControlName="email" required="">
                     <label *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched" class="error-input">
                         Campo obrigatório
                     </label>
                 </div>
                 <div class="group-input">
-                    <div class="text-info">
-                        Senha
-                    </div>
                     <input type="password" class="input-form" id="senha" placeholder="Senha" formControlName="senha" required="">
                     <label *ngIf="loginForm.get('senha')?.errors?.['required'] && loginForm.get('senha')?.touched" class="error-input">
                         Campo obrigatório

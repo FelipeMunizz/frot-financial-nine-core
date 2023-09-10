@@ -30,10 +30,6 @@ const routes: Routes = [
   {
     path: 'despesa', loadChildren: () => import('./Pages/despesa/despesa.module').then(d => d.DespesaModule),
     canActivate:[AuthGuard]
-  },
-  {
-    path: 'importacoes', loadChildren: () => import('./Pages/importacoes/importacoes.module').then(i => i.ImportacoesModule),
-    canActivate:[AuthGuard]
   }
 ];
 

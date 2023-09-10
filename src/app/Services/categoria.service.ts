@@ -13,11 +13,12 @@ export class CategoriaService{
     private readonly baseUrl = environments["endpoint"];
 
     AdicionarCategoria(categoria: Categoria){
-        return this.httpClient.post<Categoria>(`${this.baseUrl}/AdicionarCategoria`,
+        debugger
+        return this.httpClient.post<Categoria>(`${this.baseUrl}/Categoria/AdicionarCategoria`,
         categoria)
     }
 
     ListarCategoriasUsuario(email: string){
-        return this.httpClient.get(`${this.baseUrl}/ListarCategoriasUsuario?email=${email}`)
+        return this.httpClient.get(`${this.baseUrl}/Categoria/ListarCategoriasUsuario?email=${email}`)
     }
 }

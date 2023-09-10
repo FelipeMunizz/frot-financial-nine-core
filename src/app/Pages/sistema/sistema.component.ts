@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SistemaFinanceiro } from 'src/app/Models/SistemaFinanceiro';
+import { AuthService } from 'src/app/Services/auth.service';
 import { MenuService } from 'src/app/Services/menu.service';
 import { MessageService } from 'src/app/Services/message.service';
 import { SistemaService } from 'src/app/Services/sistema.service';
@@ -12,7 +13,7 @@ import { SistemaService } from 'src/app/Services/sistema.service';
 })
 export class SistemaComponent {
 
-  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public sistemaService: SistemaService, private messageService: MessageService) {
+  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public sistemaService: SistemaService, private messageService: MessageService, public authService: AuthService) {
   }
 
   sistemaForm: FormGroup;
@@ -35,18 +36,18 @@ export class SistemaComponent {
     var dados = this.dadosForm();
 
     let item = new SistemaFinanceiro();
-    item.Nome = dados["name"].value;
-    item.Id = 0;
-    item.Mes = 0;
-    item.Ano = 0;
-    item.GerarCopiaDespesa = true;
-    item.MesCopia = 0;
-    item.AnoCopia = 0;
+    item.nome = dados["name"].value;
+    item.id = 0;
+    item.mes = 0;
+    item.ano = 0;
+    item.gerarCopiaDespesa = true;
+    item.mesCopia = 0;
+    item.anoCopia = 0;
     
     this.sistemaService.AdicionarSistemaFinanceiro(item)    
     .subscribe((response : any) => {
       this.sistemaForm.reset();
-      this.sistemaService.CadastrarUsuarioSistemaFinanceiro(response.id, localStorage.getItem("emailUsuario"))
+      this.sistemaService.CadastrarUsuarioSistemaFinanceiro(response.id, this.authService.GetEmailUser())
       .subscribe((response : any) => {
         this.messageService.showSuccessMessage('Sistema cadastrado com sucesso')
       }),(error) => this.messageService.showErrorMessage(error), () => {

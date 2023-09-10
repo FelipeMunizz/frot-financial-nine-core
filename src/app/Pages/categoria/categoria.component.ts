@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Categoria } from 'src/app/Models/Categoria';
 import { SelectModel } from 'src/app/Models/SelectModel';
+import { SistemaFinanceiro } from 'src/app/Models/SistemaFinanceiro';
+import { AuthService } from 'src/app/Services/auth.service';
+import { CategoriaService } from 'src/app/Services/categoria.service';
 import { MenuService } from 'src/app/Services/menu.service';
+import { MessageService } from 'src/app/Services/message.service';
+import { SistemaService } from 'src/app/Services/sistema.service';
 
 @Component({
   selector: 'app-categoria',
@@ -9,11 +15,12 @@ import { MenuService } from 'src/app/Services/menu.service';
   styleUrls: ['./categoria.component.scss']
 })
 export class CategoriaComponent {
-  constructor(public menuService: MenuService, public formBuilder: FormBuilder) {
+  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public sistemaService: SistemaService, public authService: AuthService, public categoriaService: CategoriaService, private messageService: MessageService) {
   }
 
   listSistemas = new Array<SelectModel>();
   sistemaSelect = new SelectModel();
+  loading: boolean = false;
 
   categoriaForm: FormGroup;
 
@@ -24,6 +31,8 @@ export class CategoriaComponent {
       name: ['', [Validators.required]],
       sistemaSelect: ['', [Validators.required]],
     })
+
+    this.ListaSistemaUsuario();
   }
 
   dadosForm(){
@@ -31,8 +40,39 @@ export class CategoriaComponent {
   }
 
   enviar(){
-    debugger
-    var dados = this.dadosForm()
+    
+    this.loading = true;
+    var dados = this.dadosForm();
+
+    let item = new Categoria();
+    item.nome = dados["name"].value;
+    item.id = 0;
+    item.idSistema = parseInt(this.sistemaSelect.id)
+
+    this.categoriaService.AdicionarCategoria(item)    
+    .subscribe((response : any) => {
+      this.categoriaForm.reset();
+      this.messageService.showSuccessMessage("Categoria adicionada com sucesso")
+    }),
+    (error) => this.messageService.showErrorMessage(error), () => {
+    }
+    this.loading = false;
+  }
+
+  ListaSistemaUsuario(){
+    this.sistemaService.ListaSistemaUsuario(this.authService.GetEmailUser())
+    .subscribe((response : Array<SistemaFinanceiro>) =>{
+      var listSistemaFinanceiro = [];
+      response.forEach(x => {
+        var item = new SelectModel();
+        item.id = x.id.toString();
+        item.name = x.nome;
+
+        listSistemaFinanceiro.push(item);
+      });
+
+      this.listSistemas = listSistemaFinanceiro;
+    } )
   }
 
 }

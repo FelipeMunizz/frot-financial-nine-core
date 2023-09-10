@@ -39,8 +39,7 @@ export class LoginComponent {
     })
   }
 
-  get dadosForm() {
-    localStorage.setItem('emailUsuario', this.loginForm.controls['email'].value);
+  get dadosForm() {    
     return this, this.loginForm.controls
   }
 
@@ -50,6 +49,7 @@ export class LoginComponent {
       token=>{
         this.authService.SetToken(token);
         this.authService.UsuarioAutenticado(true);    
+        this.authService.SetEmailUser(this.dadosForm["email"].value);
         this.loading = false;    
         this.router.navigate(['/dashboard'])
       },

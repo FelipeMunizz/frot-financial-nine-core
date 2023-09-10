@@ -13,11 +13,11 @@ export class DespesaService{
     private readonly baseUrl = environments["endpoint"];
 
     AdicionarDespesa(despesa: Despesa){
-        return this.httpClient.post<Despesa>(`${this.baseUrl}/AdicionarCategoria`,
+        return this.httpClient.post<Despesa>(`${this.baseUrl}/Despesa/AdicionarCategoria`,
         despesa)
     }
 
     ListarDespesasUsuario(email: string){
-        return this.httpClient.get(`${this.baseUrl}/ListarDespesasUsuario?email=${email}`)
+        return this.httpClient.get(`${this.baseUrl}/Despesa/ListarDespesasUsuario?email=${email}`)
     }
 }

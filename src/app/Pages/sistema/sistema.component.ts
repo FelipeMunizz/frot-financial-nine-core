@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { SistemaFinanceiro } from 'src/app/Models/SistemaFinanceiro';
 import { AuthService } from 'src/app/Services/auth.service';
 import { MenuService } from 'src/app/Services/menu.service';
@@ -18,6 +19,10 @@ export class SistemaComponent {
 
   sistemaForm: FormGroup;
   loading: boolean = false;
+  showForm: boolean = false;
+  nomeBotao: string = "Cadastrar Categoria";
+  displayedColumns: string[] = ['Nome'];
+  dataSource = new MatTableDataSource<SistemaFinanceiro>();
 
   ngOnInit() {
     this.menuService.menuSelecionado = 2;
@@ -25,6 +30,9 @@ export class SistemaComponent {
     this.sistemaForm = this.formBuilder.group({
       name: ['', [Validators.required]]
     })
+
+    this.sistemaService.ListaSistemaUsuario(this.authService.GetEmailUser())
+      .subscribe((data) => this.dataSource.data = data as SistemaFinanceiro[])
   }
 
   dadosForm(){
@@ -56,6 +64,11 @@ export class SistemaComponent {
     (error) => this.messageService.showErrorMessage(error), () => {
     }
     this.loading = false;
+  }
+
+  ExibeForm() {
+    this.showForm = !this.showForm;
+    this.nomeBotao = this.showForm ? 'Cadastrar Sistema' : 'Exibir Sistemas';
   }
 
 }

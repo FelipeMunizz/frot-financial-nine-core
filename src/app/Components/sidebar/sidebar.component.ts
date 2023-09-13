@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from './../../Services/menu.service';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'sidebar',
@@ -8,7 +9,7 @@ import { MenuService } from './../../Services/menu.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  constructor(private router : Router, public menuService : MenuService){
+  constructor(private router : Router, public menuService : MenuService, public authService: AuthService){
 
   }
 
@@ -26,11 +27,20 @@ export class SidebarComponent {
         case 4:
         this.router.navigate(['/despesa'])
         break;
-    
+
+        case 99:
+          this.LogoutUser();
+          this.router.navigate(['/login']);
+          break;
       default:
         break;
     }
 
     this.menuService.menuSelecionado = menu
+  }
+
+  LogoutUser(){
+    this.authService.LimparDadosUsuarios();
+    this.authService.LimparToken();
   }
 }

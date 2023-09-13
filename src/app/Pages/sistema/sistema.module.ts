@@ -5,6 +5,9 @@ import { SistemaRoutingModule } from "./sistema-routing.module";
 import { NavbarModule } from "src/app/Components/navbar/navbar.module";
 import { SidebarModule } from "src/app/Components/sidebar/sidebar.module";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
     providers: [],
@@ -15,7 +18,10 @@ import { ReactiveFormsModule } from "@angular/forms";
         SistemaRoutingModule, 
         NavbarModule, 
         SidebarModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule
     ]
 })
 

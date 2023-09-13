@@ -8,8 +8,30 @@
                 Cadastro de Sistemas
             </div>
         </div>
+        
+        <div class="row">
+            <div class="group-row">
+                <input class="btn-primary" (click)="ExibeForm()" type="button" value="{{nomeBotao}}"/>
+            </div>
+        </div>
 
-        <form class="form-page"[formGroup]="sistemaForm" (submit)="enviar()">
+        <div *ngIf="showForm" class="mat-elevation-z8 table">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          
+              <!-- Coluna Nome -->
+              <ng-container matColumnDef="Nome">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+                <td mat-cell *matCellDef="let element"> {{ element.Nome }} </td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          
+            <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+          </div>
+
+        <form *ngIf="!showForm" class="form-page"[formGroup]="sistemaForm" (submit)="enviar()">
             <div class="row">
                 <div class="group-row">                    
                     <label for="">Sistema</label>

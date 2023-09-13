@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
     "@ng-select/ng-select": "^11.0.0",
-    "bootstrap": "^5.3.1",
     "moment": "^2.29.4",
     "ngx-device-detector": "^6.0.1",
     "ngx-image-compress": "^15.1.5",

@@ -40,31 +40,6 @@ $frot-financial-nine-core-theme: mat.define-light-theme((
 
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "~@ng-select/ng-select/themes/default.theme.css";
-
-// Functions first
-@import "../node_modules/bootstrap/scss/functions";
-
-// Variable overrides second
-$primary: #900;
-$enable-shadows: true;
-$prefix: "mo-";
-
-// Required Bootstrap imports
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/variables-dark";
-@import "../node_modules/bootstrap/scss/maps";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/bootstrap/scss/root";
-
-// Optional components
-@import "../node_modules/bootstrap/scss/utilities";
-@import "../node_modules/bootstrap/scss/reboot";
-@import "../node_modules/bootstrap/scss/containers";
-@import "../node_modules/bootstrap/scss/grid";
-@import "../node_modules/bootstrap/scss/helpers";
-@import "../node_modules/bootstrap/scss/utilities/api";
-
-
 body {
   font-family: "Poppins";
   margin: 0;
@@ -109,7 +84,7 @@ label{
     background: white;
     padding: 16px;
     border-radius: 10px;
-    height: 79vh;
+    height: 85vh;
     min-height: 100%;
     min-width: 200px;
 
@@ -137,8 +112,11 @@ label{
       display: grid;
       justify-content: center;
       
-        .group-row{
-          display: grid;
+        .row{
+          padding: 5px;
+          .group-row{
+            display: grid;
+          }
         }
     }
   }

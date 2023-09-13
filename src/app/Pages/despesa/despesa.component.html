@@ -5,7 +5,7 @@
     <div class="content-page">
         <div class="card-header">
             <div class="card-title">
-                Cadastro de Categorias
+                Cadastro de Despesas
             </div>
         </div>
 
@@ -34,13 +34,21 @@
             <div class="row">
                 <div class="group-row">                    
                     <label for="">Sistemas</label>
-                    <ng-select class="select-padrao" formControlName="sistemaSelect" [items]="listSistemas" [(ngModel)]="sistemaSelect" bindLabel="name" [multiple]="false" [clearable]="false" [searchable]="false"></ng-select>                    
+                    <ng-select class="select-padrao" formControlName="sistemaSelect" [items]="listSistemas" [(ngModel)]="sistemaSelect" bindLabel="name" [multiple]="false" [clearable]="false" [searchable]="false" (ngModelChange)="onSistemaSelectChange()"></ng-select>                    
                 </div>
             </div>
             <div class="row">
                 <div class="group-row">                    
                     <label for="">Categoria</label>
                     <ng-select class="select-padrao" formControlName="categoriaSelect" [items]="listCategorias" [(ngModel)]="categoriaSelect" bindLabel="name" [multiple]="false" [clearable]="false" [searchable]="false"></ng-select>                    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="group-row">
+                    <mat-slide-toggle class="group-slide" [color]="color" [checked]="checked" [disabled]="disabled" (change)="handleChangePago($event)">
+                        Pago?
+                    </mat-slide-toggle>    
                 </div>
             </div>
 

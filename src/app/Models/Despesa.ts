@@ -1,5 +1,5 @@
 export class Despesa{
-    id: number;
+    id: number = 0;
     nome: string;
     valor: number;
     mes: number;

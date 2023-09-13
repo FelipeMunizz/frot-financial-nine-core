@@ -18,7 +18,7 @@ export class CategoriaService{
         categoria)
     }
 
-    ListarCategoriasUsuario(email: string){
-        return this.httpClient.get(`${this.baseUrl}/Categoria/ListarCategoriasUsuario?email=${email}`)
+    ListarCategoriasUsuario(email: string, idSistema: number){
+        return this.httpClient.get(`${this.baseUrl}/Categoria/ListarCategoriasUsuario?email=${email}&idSistema=${idSistema}`)
     }
 }

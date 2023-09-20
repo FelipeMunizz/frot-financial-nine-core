@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { DespesaComponent } from "./despesa.component";
+import { LancamentoComponent } from "./lancamento.component";
 
 const routes: Routes = [{
     path: '',
-    component: DespesaComponent
+    component: LancamentoComponent
 }];
 
 @NgModule({
@@ -12,4 +12,4 @@ const routes: Routes = [{
     exports: [RouterModule]
 })
 
-export class DespesaRoutingModule{}
+export class lancamentoRoutingModule{}

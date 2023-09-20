@@ -1,20 +1,20 @@
 import { NgModule } from "@angular/core";
-import { DespesaComponent } from "./despesa.component";
+import { LancamentoComponent } from "./lancamento.component";
 import { CommonModule } from "@angular/common";
-import { DespesaRoutingModule } from "./despesa-routing.module";
 import { NavbarModule } from "src/app/Components/navbar/navbar.module";
 import { SidebarModule } from "src/app/Components/sidebar/sidebar.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import{MatSlideToggleModule} from "@angular/material/slide-toggle"
+import { lancamentoRoutingModule } from "./lancamento-routing.module";
 
 @NgModule({
     providers: [],
-    declarations: [DespesaComponent],
+    declarations: [LancamentoComponent],
     imports: 
     [
         CommonModule, 
-        DespesaRoutingModule, 
+        lancamentoRoutingModule, 
         NavbarModule, 
         SidebarModule,
         FormsModule,
@@ -24,4 +24,4 @@ import{MatSlideToggleModule} from "@angular/material/slide-toggle"
     ]
 })
 
-export class DespesaModule{}
+export class LancamentoModule{}

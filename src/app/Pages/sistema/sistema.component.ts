@@ -19,10 +19,6 @@ export class SistemaComponent {
 
   sistemaForm: FormGroup;
   loading: boolean = false;
-  showForm: boolean = false;
-  nomeBotao: string = "Cadastrar Categoria";
-  displayedColumns: string[] = ['Nome'];
-  dataSource = new MatTableDataSource<SistemaFinanceiro>();
 
   ngOnInit() {
     this.menuService.menuSelecionado = 2;
@@ -30,9 +26,6 @@ export class SistemaComponent {
     this.sistemaForm = this.formBuilder.group({
       name: ['', [Validators.required]]
     })
-
-    this.sistemaService.ListaSistemaUsuario(this.authService.GetEmailUser())
-      .subscribe((data) => this.dataSource.data = data as SistemaFinanceiro[])
   }
 
   dadosForm(){
@@ -65,10 +58,4 @@ export class SistemaComponent {
     }
     this.loading = false;
   }
-
-  ExibeForm() {
-    this.showForm = !this.showForm;
-    this.nomeBotao = this.showForm ? 'Cadastrar Sistema' : 'Exibir Sistemas';
-  }
-
 }

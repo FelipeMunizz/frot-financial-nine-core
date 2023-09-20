@@ -25,7 +25,7 @@ export class SidebarComponent {
         this.router.navigate(['/categoria'])
         break;
         case 4:
-        this.router.navigate(['/despesa'])
+        this.router.navigate(['/lancamento'])
         break;
 
         case 99:

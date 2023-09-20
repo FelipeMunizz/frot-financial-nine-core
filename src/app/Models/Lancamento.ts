@@ -1,10 +1,10 @@
-export class Despesa{
+export class Lancamento{
     id: number = 0;
     nome: string;
     valor: number;
     mes: number;
     ano: number;
-    tipoDespesa: number;
+    tipoLancamento: number;
     dataCadastro: Date;
     dataAlteracao: Date;
     dataPagamento: Date;

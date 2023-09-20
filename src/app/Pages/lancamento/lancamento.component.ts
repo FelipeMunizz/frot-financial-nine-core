@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EnumTipoLancamento } from 'src/app/Enums/enumTipoLancamento';
 import { Categoria } from 'src/app/Models/Categoria';
 import { Lancamento } from 'src/app/Models/Lancamento';
 import { SelectModel } from 'src/app/Models/SelectModel';
@@ -44,6 +43,7 @@ export class LancamentoComponent {
       data: ['', [Validators.required]],
       categoriaSelect: ['', [Validators.required]],
       sistemaSelect: ['', [Validators.required]],      
+      tipoLancamentoSelected: ['', [Validators.required]]
     });
 
     this.ListaLancamento();
@@ -122,12 +122,14 @@ export class LancamentoComponent {
   }
 
   ListaLancamento(){
-    this.listTipoLancamento = Object.keys(EnumTipoLancamento)
-      .filter(value => !isNaN(Number(value)))
-      .map(key => ({
-        id: EnumTipoLancamento[key],
-        name: EnumTipoLancamento[key]
-      }));
+    var despesa = new SelectModel;
+    despesa.id = '1';
+    despesa.name = 'Despesa';
+
+    var receita = new SelectModel;
+    receita.id = '2';
+    receita.name = 'Receita';
+    this.listTipoLancamento = [despesa,receita]
   }
 
 }

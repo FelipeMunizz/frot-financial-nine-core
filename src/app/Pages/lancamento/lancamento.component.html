@@ -31,20 +31,12 @@
                     <label class="error-input" *ngIf="lancamentoForm.get('data')?.errors?.['required'] && lancamentoForm.get('data')?.touched">Campo Obrigatório</label>              
                 </div>
             </div>
-            <div class="group-row">
-                <label for="tipoLancamento">Tipo de Lançamento</label>
-                <ng-select
-                  class="select-padrao"
-                  formControlName="tipoLancamento"
-                  [items]="listTipoLancamento"
-                  bindLabel="name"
-                  bindValue="id"
-                  [multiple]="false" 
-                  [clearable]="false" 
-                  [searchable]="false"
-                  [(ngModel)]="tipoLancamentoSelected"
-                ></ng-select>
-              </div>
+            <div class="row">
+                <div class="group-row">                    
+                    <label for="">Sistemas</label>
+                    <ng-select class="select-padrao" formControlName="tipoLancamentoSelected" [items]="listTipoLancamento" [(ngModel)]="tipoLancamentoSelected" bindLabel="name" [multiple]="false" [clearable]="false" [searchable]="false"></ng-select>                    
+                </div>
+            </div>
             <div class="row">
                 <div class="group-row">                    
                     <label for="">Sistemas</label>

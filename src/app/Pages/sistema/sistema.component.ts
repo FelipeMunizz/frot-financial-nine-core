@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
 import { SistemaFinanceiro } from 'src/app/Models/SistemaFinanceiro';
 import { AuthService } from 'src/app/Services/auth.service';
 import { MenuService } from 'src/app/Services/menu.service';
@@ -17,11 +16,22 @@ export class SistemaComponent {
   constructor(public menuService: MenuService, public formBuilder: FormBuilder, public sistemaService: SistemaService, private messageService: MessageService, public authService: AuthService) {
   }
 
+  tipoTela: number = 1; //1- Listagem, 2- Cadastro, 3- Edição
+  tableListSistemas: Array<SistemaFinanceiro>;
+
+  page: number = 1;
+  config: any;
+  paginacao: boolean = true;
+  itemsPorPagina: number = 10;
+  id: string;
+
   sistemaForm: FormGroup;
   loading: boolean = false;
 
   ngOnInit() {
     this.menuService.menuSelecionado = 2;
+    this.configpag();
+    this.ListaSistemaUsuario();
 
     this.sistemaForm = this.formBuilder.group({
       name: ['', [Validators.required]]
@@ -57,5 +67,52 @@ export class SistemaComponent {
     (error) => this.messageService.showErrorMessage(error), () => {
     }
     this.loading = false;
+  }
+
+  configpag() {
+    this.id = this.gerarIdParaConfigDePaginacao();
+
+    this.config = {
+      id: this.id,
+      currentPage: this.page,
+      itemsPerPage: this.itemsPorPagina
+
+    };
+  }
+
+  gerarIdParaConfigDePaginacao(){
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < 10; i++) {
+      result += characters.charAt(Math.floor(Math.random() *
+        charactersLength));
+    }
+    return result;
+  }
+
+  ListaSistemaUsuario(){
+    this.loading = true;
+    this.tipoTela = 1;
+    this.sistemaService.ListaSistemaUsuario(this.authService.GetEmailUser()).subscribe((response: Array<SistemaFinanceiro>) => {
+      this.tableListSistemas = response;
+    }, (error) => this.messageService.showErrorMessage(error), () => {})
+    this.loading = false;
+  }
+
+  cadastro(){
+    this.tipoTela = 2;
+    this.sistemaForm.reset();
+  }
+
+  mudarItemsPorPage(){
+    this.page = 1;
+    this.config.currentPage = this.page;
+    this.config.itemsPerPage = this.itemsPorPagina;
+  }
+
+  mudarPage(event: any){
+    this.page = event;
+    this.config.currentPage = this.page;
   }
 }

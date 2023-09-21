@@ -24,6 +24,7 @@
     "moment": "^2.29.4",
     "ngx-device-detector": "^6.0.1",
     "ngx-image-compress": "^15.1.5",
+    "ngx-pagination": "^6.0.3",
     "ngx-spinner": "^16.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

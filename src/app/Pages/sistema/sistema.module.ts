@@ -4,10 +4,13 @@ import { CommonModule } from "@angular/common";
 import { SistemaRoutingModule } from "./sistema-routing.module";
 import { NavbarModule } from "src/app/Components/navbar/navbar.module";
 import { SidebarModule } from "src/app/Components/sidebar/sidebar.module";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { NgxPaginationModule } from "ngx-pagination";
+import {MatIconModule} from '@angular/material/icon'
+import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({
     providers: [],
@@ -21,7 +24,11 @@ import { MatSortModule } from '@angular/material/sort';
         ReactiveFormsModule,
         MatTableModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        NgxPaginationModule,
+        FormsModule,
+        NgSelectModule,
+        MatIconModule
     ]
 })
 

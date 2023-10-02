@@ -1,6 +1,5 @@
 <navbar></navbar>
 <sidebar></sidebar>
-
 <div class="container-base">
     <div class="content-page">
         <div class="card-header">
@@ -8,7 +7,8 @@
                 Cadastro de Categorias
             </div>
         </div>
-
+        
+        <button mat-button (click)="openSistemaSelecaoModal()">Selecionar Sistema</button>
         <form class="form-page"[formGroup]="categoriaForm" (submit)="enviar()">
             <div class="row">
                 <div class="group-row">                    

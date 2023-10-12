@@ -12,15 +12,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthGuard } from './Pages/guards/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { SistemaSelecaoModalComponent } from './Components/sistema-selecao-modal/sistema-selecao-modal.component';
 
 const RxJs = [LoaderInterceptor, HTTPStatus]
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SistemaSelecaoModalComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

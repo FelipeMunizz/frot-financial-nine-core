@@ -1,14 +1,18 @@
 <navbar></navbar>
 <sidebar></sidebar>
-<div class="container-base">
+<div *ngIf="tipoTela == 2" class="container-base">
     <div class="content-page">
-        <div class="card-header">
-            <div class="card-title">
-                Cadastro de Categorias
+        <div class="header-info-2">
+            <div class="card-header">
+                <div class="card-title">
+                    Cadastro de Categoria
+                </div>
+                <div (click)="ListaCategoriaUsuario()" class="card-menu">
+                    Lista de Categorias
+                </div>
             </div>
         </div>
-        
-        <button mat-button (click)="openSistemaSelecaoModal()">Selecionar Sistema</button>
+                
         <form class="form-page"[formGroup]="categoriaForm" (submit)="enviar()">
             <div class="row">
                 <div class="group-row">                    
@@ -32,5 +36,53 @@
     </div>
     <div *ngIf="loading" class="loader-overlay">
         <div class="loader"> </div>
+    </div>
+</div>
+
+<div *ngIf="tipoTela == 1" class="container-base">
+    <div class="content-page">
+        <div class="header-info-2">
+            <div class="card-header">
+                <div class="card-title">
+                    Lista de Sistemas
+                </div>
+                <div (click)="cadastro()" class="card-menu">
+                    Cadastro de Sistema
+                </div>
+            </div>
+        </div>
+
+        <table [cellSpacing]="0" [cellPadding]="0">
+            <thead>
+                <tr>
+                    <td>Codigo</td>
+                    <td>Nome</td>
+                    <td>Ação</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="select-item" *ngFor="let item of tableListCategoria | paginate: config; let i = index"
+                    class="linha-table" [ngClass]="{'linha-cinza' : i % 2 == 0, 'linha-branca': i % 2 !==0}">
+                    <td>{{item.id}}</td>
+                    <td>{{item.nome}}</td>
+                    <td>Editar</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tabela-footer" *ngIf="paginacao && tableListCategoria">
+            <label class="mostrar">Mostrar</label>
+            <ng-select (change)="mudarItemsPorPage()" [(ngModel)]="itemsPorPagina" [clearable]="false"
+                [searchable]="false" class="mostrar-drop">
+                <ng-option [value]="10">10</ng-option>
+                <ng-option [value]="50">50</ng-option>
+                <ng-option [value]="100">100</ng-option>
+            </ng-select>
+
+            <div class="container-pagination">
+                <pagination-controls id="{{this.id}}" previousLabel="Anterior" nextLabel="Próximo"
+                    [responsive]="true" (pageChange)="mudarPage($event)">
+                </pagination-controls>
+            </div>
+        </div>
     </div>
 </div>

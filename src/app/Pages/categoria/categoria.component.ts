@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SistemaSelecaoModalComponent } from 'src/app/Components/sistema-selecao-modal/sistema-selecao-modal.component';
 import { Categoria } from 'src/app/Models/Categoria';
 import { SelectModel } from 'src/app/Models/SelectModel';
 import { SistemaFinanceiro } from 'src/app/Models/SistemaFinanceiro';
@@ -20,6 +19,15 @@ export class CategoriaComponent {
   constructor(public menuService: MenuService, public formBuilder: FormBuilder, public sistemaService: SistemaService, public authService: AuthService, public categoriaService: CategoriaService, private messageService: MessageService, public dialog:MatDialog) {
   }
 
+  tipoTela: number = 1; //1- Listagem, 2- Cadastro, 3- Edição
+  tableListCategoria: Array<Categoria>;
+
+  page: number = 1;
+  config: any;
+  paginacao: boolean = true;
+  itemsPorPagina: number = 10;
+  id: string;
+
   listSistemas = new Array<SelectModel>();
   sistemaSelect = new SelectModel();
   loading: boolean = false;
@@ -28,6 +36,10 @@ export class CategoriaComponent {
 
   ngOnInit() {
     this.menuService.menuSelecionado = 3;
+
+    this.configpag();
+
+    this.ListaCategoriaUsuario();
 
     this.categoriaForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -61,6 +73,15 @@ export class CategoriaComponent {
     this.loading = false;
   }
 
+  ListaCategoriaUsuario(){
+    this.loading = true;
+    this.tipoTela = 1;
+    this.categoriaService.ListarCategoriasUsuario(this.authService.GetEmailUser(), 1).subscribe((response: Array<Categoria>) => {
+      this.tableListCategoria = response;
+    }, (error) => this.messageService.showErrorMessage(error), () => {})
+    this.loading = false;
+  }
+
   ListaSistemaUsuario(){
     this.sistemaService.ListaSistemaUsuario(this.authService.GetEmailUser())
     .subscribe((response : Array<SistemaFinanceiro>) =>{
@@ -75,20 +96,44 @@ export class CategoriaComponent {
 
       this.listSistemas = listSistemaFinanceiro;
     } )
+  }  
+
+  configpag() {
+    this.id = this.gerarIdParaConfigDePaginacao();
+
+    this.config = {
+      id: this.id,
+      currentPage: this.page,
+      itemsPerPage: this.itemsPorPagina
+
+    };
   }
 
-  openSistemaSelecaoModal() {
-    const dialogRef = this.dialog.open(SistemaSelecaoModalComponent, {
-      width: '400px', 
-      data: { sistemas: this.listSistemas }
-    });
-  
-    dialogRef.afterClosed().subscribe((selectedSistema: SelectModel) => {
-      if (selectedSistema) {
-        localStorage.setItem('sistemaSelected', selectedSistema.id)
-      }
-    });
+  gerarIdParaConfigDePaginacao(){
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < 10; i++) {
+      result += characters.charAt(Math.floor(Math.random() *
+        charactersLength));
+    }
+    return result;
   }
-  
+
+  cadastro(){
+    this.tipoTela = 2;
+    this.categoriaForm.reset();
+  }
+
+  mudarItemsPorPage(){
+    this.page = 1;
+    this.config.currentPage = this.page;
+    this.config.itemsPerPage = this.itemsPorPagina;
+  }
+
+  mudarPage(event: any){
+    this.page = event;
+    this.config.currentPage = this.page;
+  }
 
 }

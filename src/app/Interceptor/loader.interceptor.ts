@@ -72,7 +72,6 @@ export class LoaderInterceptor implements HttpInterceptor{
                 this._requests;
                 this.status.SetHttpStatus(this._requests > 0);
                 this.status.GetHttpStatus().subscribe((status: boolean) => {
-                    if(!status)
                     this.spinner.hide();
                 });
             })

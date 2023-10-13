@@ -28,7 +28,6 @@ export class LancamentoComponent {
   tipoLancamentoSelected = new SelectModel();
 
   lancamentoForm: FormGroup;
-  loading: boolean = false;
 
   color = "primary";
   checked = false;
@@ -61,8 +60,6 @@ export class LancamentoComponent {
   }  
 
   enviar(){
-    debugger;
-    this.loading = true;
     var dados = this.dadosForm();
 
     let item = new Lancamento();
@@ -81,8 +78,6 @@ export class LancamentoComponent {
     }),
     (error) => this.messageService.showErrorMessage(error), () => {
     }
-
-    this.loading = false;
   }
 
   ListaCategoria(){

@@ -30,7 +30,6 @@ export class CategoriaComponent {
 
   listSistemas = new Array<SelectModel>();
   sistemaSelect = new SelectModel();
-  loading: boolean = false;
 
   categoriaForm: FormGroup;
 
@@ -55,7 +54,6 @@ export class CategoriaComponent {
 
   enviar(){
     
-    this.loading = true;
     var dados = this.dadosForm();
 
     let item = new Categoria();
@@ -70,16 +68,13 @@ export class CategoriaComponent {
     }),
     (error) => this.messageService.showErrorMessage(error), () => {
     }
-    this.loading = false;
   }
 
   ListaCategoriaUsuario(){
-    this.loading = true;
     this.tipoTela = 1;
     this.categoriaService.ListarCategoriasUsuario(this.authService.GetEmailUser(), 1).subscribe((response: Array<Categoria>) => {
       this.tableListCategoria = response;
     }, (error) => this.messageService.showErrorMessage(error), () => {})
-    this.loading = false;
   }
 
   ListaSistemaUsuario(){

@@ -19,8 +19,6 @@ export class LoginComponent {
     public messageService: MessageService) {}
 
   loginForm: FormGroup;
-  loading: boolean = false;
-
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group(
       {
@@ -44,17 +42,14 @@ export class LoginComponent {
   }
 
   loginUser() {
-    this.loading = true;
     this.loginService.login(this.dadosForm["email"].value, this.dadosForm["senha"].value).subscribe(
       token=>{
         this.authService.SetToken(token);
         this.authService.UsuarioAutenticado(true);    
-        this.authService.SetEmailUser(this.dadosForm["email"].value);
-        this.loading = false;    
+        this.authService.SetEmailUser(this.dadosForm["email"].value);  
         this.router.navigate(['/dashboard'])
       },
       error=>{
-        this.loading = false;
        this.messageService.showErrorMessage("Erro ao efetuar o login")
       }
     )

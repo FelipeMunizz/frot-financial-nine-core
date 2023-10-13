@@ -26,7 +26,6 @@ export class SistemaComponent {
   id: string;
 
   sistemaForm: FormGroup;
-  loading: boolean = false;
 
   ngOnInit() {
     this.menuService.menuSelecionado = 2;
@@ -43,7 +42,6 @@ export class SistemaComponent {
   }
 
   enviar(){
-    this.loading = true;
     var dados = this.dadosForm();
 
     let item = new SistemaFinanceiro();
@@ -66,7 +64,6 @@ export class SistemaComponent {
     }),
     (error) => this.messageService.showErrorMessage(error), () => {
     }
-    this.loading = false;
   }
 
   configpag() {
@@ -92,12 +89,10 @@ export class SistemaComponent {
   }
 
   ListaSistemaUsuario(){
-    this.loading = true;
     this.tipoTela = 1;
     this.sistemaService.ListaSistemaUsuario(this.authService.GetEmailUser()).subscribe((response: Array<SistemaFinanceiro>) => {
       this.tableListSistemas = response;
     }, (error) => this.messageService.showErrorMessage(error), () => {})
-    this.loading = false;
   }
 
   cadastro(){

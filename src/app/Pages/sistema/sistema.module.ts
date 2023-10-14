@@ -9,7 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { NgxPaginationModule } from "ngx-pagination";
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
 import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({

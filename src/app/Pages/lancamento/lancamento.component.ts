@@ -19,6 +19,14 @@ import { SistemaService } from 'src/app/Services/sistema.service';
 export class LancamentoComponent {
   constructor(public menuService: MenuService, public formBuilder: FormBuilder, public categoriaService: CategoriaService, public sistemaService: SistemaService, public authService: AuthService, public messageService: MessageService, public lancamentoService: LancamentoService) {
   }
+  tipoTela: number = 1; //1- Listagem, 2- Cadastro, 3- Edição
+  tableLancamentos: Array<Lancamento>;
+
+  page: number = 1;
+  config: any;
+  paginacao: boolean = true;
+  itemsPorPagina: number = 10;
+  id: string;
 
   listSistemas = new Array<SelectModel>();
   sistemaSelect = new SelectModel();
@@ -35,6 +43,9 @@ export class LancamentoComponent {
 
   ngOnInit() {
     this.menuService.menuSelecionado = 4;   
+
+    this.configpag();
+    this.ListaLancamentosUsuario();
 
     this.lancamentoForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -125,6 +136,51 @@ export class LancamentoComponent {
     receita.id = '2';
     receita.name = 'Receita';
     this.listTipoLancamento = [despesa,receita]
+  }
+
+  configpag() {
+    this.id = this.gerarIdParaConfigDePaginacao();
+
+    this.config = {
+      id: this.id,
+      currentPage: this.page,
+      itemsPerPage: this.itemsPorPagina
+
+    };
+  }
+
+  gerarIdParaConfigDePaginacao(){
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < 10; i++) {
+      result += characters.charAt(Math.floor(Math.random() *
+        charactersLength));
+    }
+    return result;
+  }
+
+  ListaLancamentosUsuario(){
+    this.tipoTela = 1;
+    this.lancamentoService.ListarLancamentosUsuario(this.authService.GetEmailUser()).subscribe((response: Array<Lancamento>) => {
+      this.tableLancamentos = response;
+    }, (error) => this.messageService.showErrorMessage(error), () => {})
+  }
+
+  cadastro(){
+    this.tipoTela = 2;
+    this.lancamentoForm.reset();
+  }
+
+  mudarItemsPorPage(){
+    this.page = 1;
+    this.config.currentPage = this.page;
+    this.config.itemsPerPage = this.itemsPorPagina;
+  }
+
+  mudarPage(event: any){
+    this.page = event;
+    this.config.currentPage = this.page;
   }
 
 }

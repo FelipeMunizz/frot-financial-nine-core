@@ -7,6 +7,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import{MatSlideToggleModule} from "@angular/material/slide-toggle"
 import { lancamentoRoutingModule } from "./lancamento-routing.module";
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
+import { NgxPaginationModule } from "ngx-pagination";
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
     providers: [],
@@ -20,7 +25,12 @@ import { lancamentoRoutingModule } from "./lancamento-routing.module";
         FormsModule,
         ReactiveFormsModule,
         NgSelectModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        NgxPaginationModule,
+        MatIconModule
     ]
 })
 

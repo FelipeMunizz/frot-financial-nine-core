@@ -85,6 +85,7 @@ export class LancamentoComponent {
     this.lancamentoService.AdicionarLancamento(item)    
     .subscribe((response : any) => {
       this.lancamentoForm.reset();
+      this.ListaLancamentosUsuario();
       this.messageService.showSuccessMessage("Categoria adicionada com sucesso")
     }),
     (error) => this.messageService.showErrorMessage(error), () => {
@@ -182,5 +183,4 @@ export class LancamentoComponent {
     this.page = event;
     this.config.currentPage = this.page;
   }
-
 }

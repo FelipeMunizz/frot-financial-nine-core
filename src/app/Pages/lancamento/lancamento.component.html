@@ -91,6 +91,8 @@
                     <td>Codigo</td>
                     <td>Nome</td>
                     <td>Valor</td>
+                    <td>Pago</td>
+                    <td>Data Vencimento</td>
                     <td>Ação</td>
                 </tr>
             </thead>
@@ -100,6 +102,12 @@
                     <td>{{item.id}}</td>
                     <td>{{item.nome}}</td>
                     <td>R${{item.valor.toFixed(2)}}</td>
+                    <td>
+                        <mat-chip-listbox aria-label="Fish selection">
+                            <mat-chip-option [color]="color" [selected]="item.pago" disabled>Pago</mat-chip-option>
+                        </mat-chip-listbox>
+                    </td>                    
+                    <td>{{item.dataVencimento}}</td>
                     <td>Editar</td>
                 </tr>
             </tbody>

@@ -12,6 +12,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { NgxPaginationModule } from "ngx-pagination";
 import {MatIconModule} from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
     providers: [],
@@ -30,7 +31,8 @@ import {MatIconModule} from '@angular/material/icon';
         MatPaginatorModule,
         MatSortModule,
         NgxPaginationModule,
-        MatIconModule
+        MatIconModule,
+        MatChipsModule
     ]
 })
 

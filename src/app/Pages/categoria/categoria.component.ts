@@ -64,6 +64,7 @@ export class CategoriaComponent {
     this.categoriaService.AdicionarCategoria(item)    
     .subscribe((response : any) => {
       this.categoriaForm.reset();
+      this.ListaCategoriaUsuario();
       this.messageService.showSuccessMessage("Categoria adicionada com sucesso")
     }),
     (error) => this.messageService.showErrorMessage(error), () => {

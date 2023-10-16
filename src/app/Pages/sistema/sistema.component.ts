@@ -59,8 +59,6 @@ export class SistemaComponent {
 
       }, (error) => console.error(error),
         () => { })
-
-
     }
     else {
 
@@ -146,7 +144,6 @@ export class SistemaComponent {
   }
 
   mudarItemsPorPage(){
-    this.itemEdicao = null;
     this.page = 1;
     this.config.currentPage = this.page;
     this.config.itemsPerPage = this.itemsPorPagina;

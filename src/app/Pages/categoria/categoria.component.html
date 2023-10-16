@@ -62,7 +62,7 @@
                     class="linha-table" [ngClass]="{'linha-cinza' : i % 2 == 0, 'linha-branca': i % 2 !==0}">
                     <td>{{item.id}}</td>
                     <td>{{item.nome}}</td>
-                    <td>Editar</td>
+                    <td (click)="editar(item.id)">Editar</td>
                 </tr>
             </tbody>
         </table>

@@ -55,23 +55,39 @@ export class CategoriaComponent {
   enviar(){
     
     var dados = this.dadosForm();
+    if(this.itemEdicao){
+      this.itemEdicao.nome = dados["name"].value;
+      this.itemEdicao.NomePropriedade="";
+      this.itemEdicao.mensagem="";
+      this.itemEdicao.notificacoes=[];
 
-    let item = new Categoria();
-    item.nome = dados["name"].value;
-    item.id = 0;
-    item.idSistema = parseInt(this.sistemaSelect.id)
+      this.categoriaService.AtualizarCategoria(this.itemEdicao)
+      .subscribe((response: Categoria) => {
+        this.categoriaForm.reset();
+        this.ListaCategoriaUsuario();
 
-    this.categoriaService.AdicionarCategoria(item)    
-    .subscribe((response : any) => {
-      this.categoriaForm.reset();
-      this.ListaCategoriaUsuario();
-      this.messageService.showSuccessMessage("Categoria adicionada com sucesso")
-    }),
-    (error) => this.messageService.showErrorMessage(error), () => {
+      }, (error) => console.error(error),
+        () => { })
+    }else{
+      let item = new Categoria();
+      item.nome = dados["name"].value;
+      item.id = 0;
+      item.idSistema = parseInt(this.sistemaSelect.id)
+  
+      this.categoriaService.AdicionarCategoria(item)    
+      .subscribe((response : any) => {
+        this.categoriaForm.reset();
+        this.ListaCategoriaUsuario();
+        this.messageService.showSuccessMessage("Categoria adicionada com sucesso")
+      }),
+      (error) => this.messageService.showErrorMessage(error), () => {
+      }
     }
+
   }
 
-  ListaCategoriaUsuario(){
+  ListaCategoriaUsuario(){    
+    this.itemEdicao = null;
     this.tipoTela = 1;
     this.categoriaService.ListarCategoriasUsuario(this.authService.GetEmailUser(), 1).subscribe((response: Array<Categoria>) => {
       this.tableListCategoria = response;
@@ -103,7 +119,10 @@ export class CategoriaComponent {
       itemsPerPage: this.itemsPorPagina
 
     };
-  }
+  };
+
+
+  itemEdicao : Categoria;
 
   gerarIdParaConfigDePaginacao(){
     var result = '';
@@ -131,5 +150,20 @@ export class CategoriaComponent {
     this.page = event;
     this.config.currentPage = this.page;
   }
+
+  editar(id: number){
+    this.categoriaService.ObterCategoria(id)
+    .subscribe((response: Categoria) => {
+      if(response){
+        this.itemEdicao = response;
+        this.tipoTela = 2;
+
+        var dados = this.dadosForm();
+        dados['name'].setValue(this.itemEdicao.nome)
+      }      
+      },
+      (error) => this.messageService.showErrorMessage(error)
+      );
+  };
 
 }
